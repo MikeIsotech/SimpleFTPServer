@@ -552,7 +552,7 @@ public:
 
   void    begin( const char * _user, const char * _pass, const char * welcomeMessage = "Welcome to Simply FTP server" );
   void    begin( const char * welcomeMessage = "Welcome to Simply FTP server" );
-
+	void		setPorts(uint16_t _cmdPort, uint16_t _dataPort, uint16_t _pasvPort); // MikeR added to set ports
   void 	  end();
   void 	  setLocalIp(IPAddress localIp);
   void    credentials( const char * _user, const char * _pass );
@@ -749,9 +749,11 @@ private:
   bool     rnfrCmd;                   // previous command was RNFR
   char *   parameter;                 // point to begin of parameters sent by client
   const char *   welcomeMessage;
-  uint16_t cmdPort,
-           pasvPort,
-           dataPort;
+	uint16_t cmdPort,
+	         pasvPort,
+	         dataPort,
+					 activePort;
+				
   uint16_t iCL;                       // pointer to cmdLine next incoming char
   uint16_t nbMatch;
 

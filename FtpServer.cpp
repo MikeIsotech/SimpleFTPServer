@@ -116,7 +116,7 @@ void FtpServer::begin( const char * _user, const char * _pass, const char * _wel
 		this->anonymousConnection = false; // needed to reset after end of anonymnous and begin of not anonymous
 	}
   // Tells the ftp server to begin listening for incoming connection
-  ftpServer.begin();
+	ftpServer.begin(cmdPort); // Miker add port
   #if (defined(ESP8266) && (FTP_SERVER_NETWORK_TYPE == NETWORK_ESP8266_ASYNC || FTP_SERVER_NETWORK_TYPE == NETWORK_ESP8266 || FTP_SERVER_NETWORK_TYPE == NETWORK_ESP8266_242)) || defined(ARDUINO_ARCH_RP2040) || FTP_SERVER_NETWORK_TYPE_SELECTED == NETWORK_SEEED_RTL8720DN
   ftpServer.setNoDelay( true );
   #endif
@@ -136,7 +136,7 @@ void FtpServer::begin( const char * _user, const char * _pass, const char * _wel
 
   this->welcomeMessage = _welcomeMessage;
 
-  dataServer.begin();
+	dataServer.begin(pasvPort); // MikeR - add port
 #if (defined(ESP8266) && (FTP_SERVER_NETWORK_TYPE == NETWORK_ESP8266_ASYNC || FTP_SERVER_NETWORK_TYPE == NETWORK_ESP8266 || FTP_SERVER_NETWORK_TYPE == NETWORK_ESP8266_242)) || defined(ARDUINO_ARCH_RP2040) || FTP_SERVER_NETWORK_TYPE_SELECTED == NETWORK_SEEED_RTL8720DN
   dataServer.setNoDelay( true );
 #endif
@@ -189,7 +189,7 @@ void FtpServer::credentials( const char * _user, const char * _pass )
 void FtpServer::iniVariables()
 {
   // Default for data port
-  dataPort = FTP_DATA_PORT_DFLT;
+	dataPort = activePort;   //FTP_DATA_PORT_DFLT; // MikeR
   
   // Default Data connection is Active
   dataConn = FTP_NoConn;

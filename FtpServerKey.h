@@ -60,7 +60,7 @@
 // esp32 configuration
 #ifndef DEFAULT_FTP_SERVER_NETWORK_TYPE_ESP32
 	#define DEFAULT_FTP_SERVER_NETWORK_TYPE_ESP32 		NETWORK_ESP32
-	#define DEFAULT_STORAGE_TYPE_ESP32 					STORAGE_FFAT
+#define DEFAULT_STORAGE_TYPE_ESP32 					STORAGE_SD_MMC		//STORAGE_FFAT
 	/**
 To use Ethernet.h with esp32 fix would be to change in Ethernet.h the line
 class EthernetServer : public Server {
@@ -128,7 +128,7 @@ https://github.com/arduino-libraries/Ethernet/issues/88
 // Best value depends on many factors: SD card, client side OS, ... 
 // But it can be reduced to 512 if memory usage is critical.
 #ifndef FTP_BUF_SIZE
-	#define FTP_BUF_SIZE 1024 //2048 //1024 // 512
+	#define FTP_BUF_SIZE 4096 //1024 //2048 //1024 // 512
 #endif
 
 #endif // FTP_SERVER_CONFIG_H
