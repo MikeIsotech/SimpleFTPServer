@@ -151,6 +151,12 @@ void FtpServer::begin( const char * _welcomeMessage ) {
 	this->begin( "anonymous", "anonymous", _welcomeMessage);
 }
 
+void	FtpServer::setPorts(uint16_t _cmdPort, uint16_t _dataPort, uint16_t _pasvPort) {
+	cmdPort = _cmdPort;
+	dataPort = _dataPort;
+	pasvPort = _pasvPort;
+}
+
 void FtpServer::end()
 {
     if(client.connected()) {
